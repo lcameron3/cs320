@@ -80,7 +80,6 @@ def main():
     # start fresh browser/scraper
     os.system("pkill chrome")
     my_window=webdriver.Chrome(options=options)
-    scraper = Scraper(my_window, address)
 
     tests = [easter_egg_test, dfs_pass_test, bfs_pass_test, protected_df_test]
     results = {"score": 0}
@@ -88,6 +87,7 @@ def main():
 
     for test_fn in tests:
         try:
+            scraper = Scraper(my_window, address)
             score = float(test_fn(scraper))
             results["score"] += score
             results[test_fn.__name__] = score
